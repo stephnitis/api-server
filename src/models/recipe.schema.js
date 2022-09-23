@@ -1,16 +1,16 @@
 'use strict';
 
 module.exports = (sequelizeDatabase, DataTypes) => {
-  return sequelizeDatabase.define('clothes', {
+  return sequelizeDatabase.define('recipes', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    color: {
+    ingredients: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    quantity: {
+    servings: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },

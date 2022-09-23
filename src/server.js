@@ -3,7 +3,7 @@
 const express = require('express');
 // const logger = require('./middleware/logger');
 const foodRouter = require('./routes/foodRoute');
-const clothesRouter = require('./routes/clothesRoute');
+const recipeRouter = require('./routes/recipeRoute');
 const notFound = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
 const PORT = process.env.PORT || 3002;
@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3002;
 const app = express();
 app.use(express.json());
 app.use(foodRouter);
-app.use(clothesRouter);
+app.use(recipeRouter);
 // app.use(logger);
 
 app.get('/', (req, res, next) => {
