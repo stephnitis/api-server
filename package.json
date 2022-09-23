@@ -7,8 +7,10 @@
     "start": "node index.js",
     "lint": "eslint **/*.js",
     "test": "jest --verbose --coverage",
-    "test-watch": "jest --watchAll --verbose --coverage"
-},
+    "test-watch": "jest --watchAll --verbose --coverage",
+    "db:config": "sequelize init:config",
+    "db:create": "sequelize db:create"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stephnitis/class04.git"
@@ -21,6 +23,7 @@
   },
   "homepage": "https://github.com/stephnitis/class04#readme",
   "dependencies": {
+    "dotenv": "^16.0.2",
     "eslint": "^8.23.1",
     "express": "^4.18.1",
     "pg": "^8.8.0",
