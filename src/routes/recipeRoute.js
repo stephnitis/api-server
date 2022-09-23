@@ -34,10 +34,15 @@ router.post('/recipes', async (req, res, send) => {
 
 // });
 
-// router.delete('/recipes/:id', async (req, res) => {
-//   let {id} = req.params;
-//   await recipeInterface.destroy({where:{id}});
-//   res.status(200).send('recipes expired');
-// });
+router.delete('/recipes/:id', async (req, res, next) => {
+  try {
+    let { id } = req.params;
+    let message = await recipeInterface.destroy(id);
+    res.status(200).send(message);
+  } catch(err){
+    next(err.message);
+  }
+
+});
 
 module.exports = router;

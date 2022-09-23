@@ -17,7 +17,6 @@ router.get('/food/:id', async (req, res, send) => {
   let {id} = req.params;
   console.log('my id is', id);
   let oneSnack = await foodInterface.read(id);
-
   res.status(200).send(oneSnack);
 });
 
@@ -36,11 +35,15 @@ router.put('/food/:id', async (req, res, next) => {
 
 });
 
-// router.delete('/food/:id', async (req, res) => {
-//   let {id} = req.params;
-//   await foodInterface.destroy({where:{id}});
-//   res.status(200).send('food expired');
-// });
+router.delete('/food/:id', async (req, res, next) => {
+  try {
+    let { id } = req.params;
+    let message = await foodInterface.destroy(id);
+    res.status(200).send(message);
+  } catch(err){
+    next(err.message);
+  }
+});
 
 router.get('/foodsMixed', async (req, res, next) => {
   let {id} = req.params;
