@@ -2,7 +2,7 @@
 
 module.exports = (sequelizeDatabase, DataTypes) => {
   return sequelizeDatabase.define('food', {
-    name: {
+    foodName: {
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -29,13 +29,12 @@ router.post('/food', async (req, res, send) => {
   res.status(200).send(newFood);
 });
 
-// router.put('/food/:id', async (req, res, next) => {
-//   let {id} = req.params;
-//   await foodInterface.update(req.body, {where: {id}});
-//   let foodUpdate = await foodInterface.findOne({where: {id}});
-//   res.status(200).send(foodUpdate);
+router.put('/food/:id', async (req, res, next) => {
+  let {id} = req.params;
+  let foodUpdate = await foodInterface.update(req.body, id);
+  res.status(200).send(foodUpdate);
 
-// });
+});
 
 // router.delete('/food/:id', async (req, res) => {
 //   let {id} = req.params;
