@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const { recipeInterface } = require('../models');
+const { recipeInterface} = require('../models');
 const router = express.Router();
 
 router.get('/recipes', async (req, res, next) => {
@@ -26,21 +26,23 @@ router.post('/recipes', async (req, res, send) => {
   res.status(200).send(newRecipes);
 });
 
-// router.put('/recipes/:id', async (req, res, next) => {
-//   let {id} = req.params;
-//   await recipeInterface.update(req.body, {where: {id}});
-//   let recipesUpdate = await recipeInterface.findOne({where: {id}});
-//   res.status(200).send(recipesUpdate);
+router.put('/recipes/:id', async (req, res, next) => {
+  let {id} = req.params;
 
-// });
+  let recipesUpdate = await recipeInterface.update(req.body, id);
+  res.status(200).send(recipesUpdate);
+
+});
 
 router.delete('/recipes/:id', async (req, res, next) => {
   try {
     let { id } = req.params;
-    let message = await recipeInterface.destroy(id);
-    res.status(200).send(message);
-  } catch(err){
-    next(err.message);
+
+    await recipeInterface.delete(id);
+    res.status(200).send('recipe trashed');
+  } catch(error){
+    console.log('Unable to Delete', error.message);
+    next('Unable to Delete');
   }
 
 });

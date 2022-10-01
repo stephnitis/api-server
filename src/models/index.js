@@ -1,12 +1,16 @@
 'use strict';
 
 require('dotenv').config();
-const {Sequelize, DataTypes} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const recipeSchema = require('./recipe.schema');
 const foodSchema = require('./food.schema');
 const Collection = require('./collection-class');
 
-const DATABASE_URL = process.env.DATABASE_URL;
+// const DATABASE_URL = process.env.DATABASE_URL;
+
+const DATABASE_URL = process.env.NODE_ENV === 'test'
+  ? 'sqlite::memory'
+  : process.env.DATABASE_URL;
 
 const sequelizeDatabase = new Sequelize(DATABASE_URL);
 
@@ -18,6 +22,8 @@ FoodModel.belongsTo(RecipeModel);
 
 module.exports = {
   sequelizeDatabase,
+  //   RecipeModel,
+  //   FoodModel,
   recipeInterface: new Collection(RecipeModel),
   foodInterface: new Collection(FoodModel),
 };
