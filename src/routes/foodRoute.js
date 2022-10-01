@@ -38,10 +38,12 @@ router.put('/food/:id', async (req, res, next) => {
 router.delete('/food/:id', async (req, res, next) => {
   try {
     let { id } = req.params;
-    let message = await foodInterface.destroy(id);
-    res.status(200).send(message);
-  } catch(err){
-    next(err.message);
+
+    await foodInterface.delete(id);
+    res.status(200).send('food trashed');
+  } catch(error){
+    console.log('Unable to Delete', error.message);
+    next('Unable to Delete');
   }
 });
 

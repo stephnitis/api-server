@@ -15,28 +15,6 @@ class Collection {
     }
   }
 
-  async update(data, id){
-    try {
-      await this.model.update(data, {where: {id}});
-      let record = await this.model.findOne({where: {id}});
-      return record;
-    } catch (err){
-      console.error('you have an error:', err);
-      return err;
-    }
-  }
-
-  async delete(id){
-    try {
-      await this.model.destroy({where:{id}});
-      return 'Record Deleted';
-    } catch (err) {
-      console.error('you have an error:', err);
-      return err;
-    }
-
-  }
-
   async read(id = null){
     try {
       let record;
@@ -60,6 +38,28 @@ class Collection {
       console.error('you have an error:', err);
       return err;
     }
+  }
+
+  async update(data, id){
+    try {
+      await this.model.update(data, {where: {id}});
+      let record = await this.model.findOne({where: {id}});
+      return record;
+    } catch (err){
+      console.error('you have an error:', err);
+      return err;
+    }
+  }
+
+  async delete(id){
+    try {
+      await this.model.destroy({where:{id}});
+      return 'Record Deleted';
+    } catch (err) {
+      console.error('you have an error:', err);
+      return err;
+    }
+
   }
 
   async readWithRelations(query){
